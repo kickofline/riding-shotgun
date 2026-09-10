@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://5dw7fx0wda83"]
+
+[ext_resource type="Script" uid="uid://bu806rwee14mo" path="res://car.gd" id="1_uoj53"]
+[ext_resource type="Texture2D" uid="uid://djyjt28chg34c" path="res://truckcabin.png" id="2_k61xc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrwn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k61xc")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Car" type="Node2D" unique_id=566597482]
+script = ExtResource("1_uoj53")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1552633094]
+texture_filter = 1
+scale = Vector2(5.223333, 5.223333)
+sprite_frames = SubResource("SpriteFrames_xrwn2")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bofah32314isd"]
+
+[ext_resource type="Texture2D" uid="uid://dqd2ljhrjlugj" path="res://icon.svg" id="1_1w383"]
+[ext_resource type="Script" uid="uid://b8jfaig6v8w57" path="res://monster_bullet.gd" id="1_nunyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrwn2"]
+size = Vector2(36, 36)
+
+[node name="MonsterBullet" type="Area2D" unique_id=223917776]
+script = ExtResource("1_nunyt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1788862320]
+scale = Vector2(0.296875, 0.29687503)
+texture = ExtResource("1_1w383")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=832440180]
+shape = SubResource("RectangleShape2D_xrwn2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1048606020]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

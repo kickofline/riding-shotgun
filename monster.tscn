@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://buwspj7bk8kpe"]
+
+[ext_resource type="Script" uid="uid://d2w72ot8xb4ik" path="res://monster.gd" id="1_mrqeg"]
+[ext_resource type="Texture2D" uid="uid://dqd2ljhrjlugj" path="res://icon.svg" id="1_s3gyj"]
+[ext_resource type="PackedScene" uid="uid://bofah32314isd" path="res://monster_bullet.tscn" id="2_ga5te"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrwn2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s3gyj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Monster" type="Area2D" unique_id=1098578003]
+script = ExtResource("1_mrqeg")
+bullet_scene = ExtResource("2_ga5te")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2103456594]
+scale = Vector2(1.828125, 1.828125)
+sprite_frames = SubResource("SpriteFrames_xrwn2")

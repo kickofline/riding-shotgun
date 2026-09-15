@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Riding Shotgun"
-run/main_scene="uid://5dw7fx0wda83"
+run/main_scene="uid://c7jygb17ojda8"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[global_group]
+
+player=""
 
 [input]
 

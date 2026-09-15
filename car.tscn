@@ -14,10 +14,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Car" type="Node2D" unique_id=566597482]
+[node name="Car" type="Area2D" unique_id=509736913 groups=["player"]]
 script = ExtResource("1_uoj53")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1552633094]
 texture_filter = 1
 scale = Vector2(5.223333, 5.223333)
 sprite_frames = SubResource("SpriteFrames_xrwn2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=594875222]
+polygon = PackedVector2Array(102, -11, 103, 50, -101, 50, -102, 22, -20, 20, -19, -41, 64, -39, 67, -10)

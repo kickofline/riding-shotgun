@@ -2,9 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://5dw7fx0wda83" path="res://car.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://buwspj7bk8kpe" path="res://monster.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" path="res://health_bar.tscn" id="3_hbar"]
+[ext_resource type="PackedScene" path="res://game_over.tscn" id="4_over"]
 
 [node name="Game" type="Node2D" unique_id=358935890]
 
 [node name="Car" parent="." unique_id=566597482 instance=ExtResource("1_80nbo")]
 
 [node name="Monster" parent="." unique_id=1815529222 instance=ExtResource("2_e2o6t")]
+
+[node name="HealthBar" parent="." unique_id=26715792 instance=ExtResource("3_hbar")]
+
+[node name="GameOver" parent="." instance=ExtResource("4_over")]

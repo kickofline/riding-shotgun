@@ -79,7 +79,7 @@ func _fire_big() -> void:
 func _spawn_bullet(dir: Vector2, amplitude := 0.0, frequency := 6.0, scene: PackedScene = null) -> void:
 	var bullet = (scene if scene else bullet_scene).instantiate()
 	get_tree().current_scene.add_child(bullet)
-	bullet.launch(global_position, dir, amplitude, frequency)
+	bullet.launch($Marker2D.global_position, dir, amplitude, frequency)
 
 func _aim_direction() -> Vector2:
 	var player = get_tree().get_first_node_in_group("player")

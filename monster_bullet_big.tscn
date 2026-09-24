@@ -10,9 +10,9 @@ size = Vector2(72, 72)
 script = ExtResource("1_nunyt")
 speed = 150
 damage = 2
+size = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("2_frames")
 animation = &"default"
 autoplay = "default"

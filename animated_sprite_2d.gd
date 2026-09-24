@@ -1,9 +1,9 @@
-extends AnimatedSprite2D
+extends Sprite2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	play("fly")
+	$"../AnimationPlayer".play("fly")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

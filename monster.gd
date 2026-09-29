@@ -1,8 +1,10 @@
 extends Area2D
+signal health_changed(value: int)
+signal died
 
 @export var bullet_scene: PackedScene
 @export var big_bullet_scene: PackedScene
-
+@export var max_health := 40
 @export var fire_rate := 1.0        # Seconds between shots within a pattern.
 @export var pattern_duration := 3.0 # Seconds before switching to the next pattern.
 
@@ -21,6 +23,8 @@ extends Area2D
 @export var wave_amplitude := 60.0
 @export var wave_frequency := 6.0
 
+var health := 0
+var dead := false
 var screen_size # Size of the game window.
 
 var patterns: Array[Callable] = []
@@ -29,6 +33,8 @@ var fire_timer := 0.0
 var pattern_timer := 0.0
 
 func _ready() -> void:
+	health = max_health
+	health_changed.emit(health)
 	screen_size = get_viewport_rect().size
 	position = Vector2(screen_size.x / 6, screen_size.y / 2)
 	patterns = [_fire_aimed, _fire_spread, _fire_radial, _fire_volley, _fire_wave, _fire_big]
@@ -44,6 +50,29 @@ func _physics_process(delta: float) -> void:
 	if pattern_timer <= 0.0:
 		pattern_index = (pattern_index + 1) % patterns.size()
 		pattern_timer = pattern_duration
+
+func take_damage(amount := 1) -> void:
+	if dead:
+		return
+	health = max(health - amount, 0)
+	health_changed.emit(health)
+	_flash_damage()
+	if health <= 0:
+		_die()
+
+func _flash_damage() -> void:
+	var sprite: Sprite2D = $Sprite2D
+	sprite.modulate = Color(1, 0.6, 0.6, 1)
+	create_tween().tween_property(sprite, "modulate", Color(1, 1, 1, 1), 0.1)
+
+func _die() -> void:
+	dead = true
+	set_physics_process(false)
+	set_deferred("monitorable", false)
+	# Runs while the win screen has the tree paused, so the dragon fades out behind it.
+	var fade := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	fade.tween_property(self, "modulate:a", 0.0, 0.8)
+	died.emit()
 
 # Bullet Patterns
 
@@ -77,6 +106,8 @@ func _fire_big() -> void:
 
 # Helpers
 func _spawn_bullet(dir: Vector2, amplitude := 0.0, frequency := 6.0, scene: PackedScene = null) -> void:
+	if dead:
+		return
 	var bullet = (scene if scene else bullet_scene).instantiate()
 	get_tree().current_scene.add_child(bullet)
 	bullet.launch($Marker2D.global_position, dir, amplitude, frequency)

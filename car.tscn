@@ -2,25 +2,43 @@
 
 [ext_resource type="Script" uid="uid://bu806rwee14mo" path="res://car.gd" id="1_uoj53"]
 [ext_resource type="Texture2D" uid="uid://djyjt28chg34c" path="res://truckcabin.png" id="2_k61xc"]
+[ext_resource type="Texture2D" path="res://truckcabin_2.png" id="4_wheel2"]
+[ext_resource type="Texture2D" path="res://truckcabin_3.png" id="5_wheel3"]
+[ext_resource type="Texture2D" path="res://truckcabin_4.png" id="6_wheel4"]
+[ext_resource type="PackedScene" path="res://player_bullet.tscn" id="3_bullet"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrwn2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_k61xc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wheel2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wheel3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wheel4")
 }],
-"loop": 1,
+"loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Car" type="Area2D" unique_id=509736913 groups=["player"]]
 script = ExtResource("1_uoj53")
+bullet_scene = ExtResource("3_bullet")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1552633094]
 texture_filter = 1
 scale = Vector2(5.223333, 5.223333)
 sprite_frames = SubResource("SpriteFrames_xrwn2")
+autoplay = "default"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=594875222]
 polygon = PackedVector2Array(102, -11, 103, 50, -101, 50, -102, 22, -20, 20, -19, -41, 64, -39, 67, -10)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(-29, -13)

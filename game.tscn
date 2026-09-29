@@ -2,8 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://5dw7fx0wda83" path="res://car.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://buwspj7bk8kpe" path="res://monster.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" path="res://health_bar.tscn" id="3_hbar"]
+[ext_resource type="PackedScene" uid="uid://d1qmkjevp5r8q" path="res://health_bar.tscn" id="3_hbar"]
 [ext_resource type="PackedScene" path="res://game_over.tscn" id="4_over"]
+[ext_resource type="Shader" uid="uid://bkk76evm0tsri" path="res://game.gdshader" id="5_ryrav"]
+[ext_resource type="Texture2D" uid="uid://ltq3011tboq8" path="res://RoadTexture.png" id="6_ryrav"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eow3j"]
+shader = ExtResource("5_ryrav")
 
 [node name="Game" type="Node2D" unique_id=358935890]
 
@@ -13,4 +18,20 @@
 
 [node name="HealthBar" parent="." unique_id=26715792 instance=ExtResource("3_hbar")]
 
-[node name="GameOver" parent="." instance=ExtResource("4_over")]
+[node name="GameOver" parent="." unique_id=1673223422 instance=ExtResource("4_over")]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=677530180]
+z_index = -10
+texture_filter = 2
+material = SubResource("ShaderMaterial_eow3j")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 1886.0
+offset_bottom = 1047.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ryrav")
+expand_mode = 1

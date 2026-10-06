@@ -25,5 +25,4 @@ func _ready() -> void:
 		_on_health_changed(boss.health)
 
 func _on_health_changed(value: int) -> void:
-	# Anchors are resolution-independent, so no dependency on layout timing.
 	_fill.anchor_right = float(value) / float(_max_health)

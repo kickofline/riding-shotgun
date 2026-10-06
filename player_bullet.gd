@@ -4,7 +4,7 @@ extends Area2D
 @export var damage := 1
 @export var length := 28.0
 @export var thickness := 6.0
-@export var color := Color(1.0, 0.9, 0.35, 1)
+@export var color := Color(1.0, 0.0, 0.0, 1.0)
 
 var direction := Vector2.LEFT
 

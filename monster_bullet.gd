@@ -4,7 +4,11 @@ const HITBOX_PER_SIZE := 48.0 # CollisionShape2D size (px) per 1.0 of `size` at 
 
 @export var speed = 250
 @export var damage := 1
-@export var size := 0.75 # Uniform scale applied to the sprite and its hitbox.
+@export var size := 0.75: # Uniform scale applied to the sprite and its hitbox.
+	set(value):
+		size = value
+		if is_node_ready():
+			_apply_size()
 
 var direction := Vector2.DOWN
 var wave_amplitude := 0.0   # 0 = straight line; >0 = sideways wobble in pixels.
@@ -24,6 +28,9 @@ func launch(from: Vector2, dir: Vector2, amplitude := 0.0, frequency := 6.0) -> 
 	rotation = direction.angle()
 
 func _ready() -> void:
+	_apply_size()
+
+func _apply_size() -> void:
 	$AnimatedSprite2D.scale = Vector2.ONE * size
 	var shape := $CollisionShape2D.shape as RectangleShape2D
 	if shape:

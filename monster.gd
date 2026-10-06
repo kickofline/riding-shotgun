@@ -3,14 +3,13 @@ signal health_changed(value: int)
 signal died
 
 @export var bullet_scene: PackedScene
-@export var big_bullet_scene: PackedScene
 @export var max_health := 40
-@export var fire_rate := 1.0        # Seconds between shots within a pattern.
-@export var pattern_duration := 3.0 # Seconds before switching to the next pattern.
+@export var fire_rate := 1.5        # Seconds between shots within a pattern.
+@export var pattern_duration := 1.5 # Seconds before switching to the next pattern.
 
 @export_group("Spread")
-@export var spread_count := 5
-@export var spread_angle_deg := 40.0 # Total width of the fan.
+@export var spread_count := 4
+@export var spread_angle_deg := 50.0 # Total width of the fan.
 
 @export_group("Radial")
 @export var radial_count := 10
@@ -20,8 +19,12 @@ signal died
 @export var volley_delay := 0.15
 
 @export_group("Wave")
-@export var wave_amplitude := 60.0
-@export var wave_frequency := 6.0
+@export var wave_amplitude := 120
+@export var wave_frequency := 3
+
+@export_group("Big")
+@export var big_size := 3.0
+@export var big_damage := 2
 
 var health := 0
 var dead := false
@@ -102,15 +105,19 @@ func _fire_wave() -> void:
 	_spawn_bullet(Vector2.RIGHT, wave_amplitude, wave_frequency)
 
 func _fire_big() -> void:
-	_spawn_bullet(_aim_direction(), 0.0, 6.0, big_bullet_scene)
+	var bullet = _spawn_bullet(_aim_direction())
+	if bullet:
+		bullet.size = big_size
+		bullet.damage = big_damage
 
 # Helpers
-func _spawn_bullet(dir: Vector2, amplitude := 0.0, frequency := 6.0, scene: PackedScene = null) -> void:
+func _spawn_bullet(dir: Vector2, amplitude := 0.0, frequency := 6.0) -> Area2D:
 	if dead:
-		return
-	var bullet = (scene if scene else bullet_scene).instantiate()
+		return null
+	var bullet = bullet_scene.instantiate()
 	get_tree().current_scene.add_child(bullet)
 	bullet.launch($Marker2D.global_position, dir, amplitude, frequency)
+	return bullet
 
 func _aim_direction() -> Vector2:
 	var player = get_tree().get_first_node_in_group("player")

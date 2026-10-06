@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d2w72ot8xb4ik" path="res://monster.gd" id="1_mrqeg"]
 [ext_resource type="PackedScene" uid="uid://bofah32314isd" path="res://monster_bullet.tscn" id="2_ga5te"]
-[ext_resource type="PackedScene" path="res://monster_bullet_big.tscn" id="3_big"]
 [ext_resource type="Texture2D" uid="uid://bejtqr6p3thry" path="res://dragon_frame_1.png" id="4_6tndq"]
 [ext_resource type="Texture2D" uid="uid://c6tjsblkisgrb" path="res://dragon_frame_2.png" id="5_fr2j"]
 [ext_resource type="Script" uid="uid://bfcl3h76dcvj1" path="res://animated_sprite_2d.gd" id="6_8ngjm"]
@@ -72,7 +71,6 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_mrqeg")
 bullet_scene = ExtResource("2_ga5te")
-big_bullet_scene = ExtResource("3_big")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1195874237]
 position = Vector2(344, -1.9999924)

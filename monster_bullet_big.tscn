@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cgoldmbwgi6x7"]
 
 [ext_resource type="Script" uid="uid://b8jfaig6v8w57" path="res://monster_bullet.gd" id="1_nunyt"]
 [ext_resource type="SpriteFrames" path="res://fireball_frames.tres" id="2_frames"]
@@ -6,21 +6,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_big"]
 size = Vector2(72, 72)
 
-[node name="MonsterBulletBig" type="Area2D"]
+[node name="MonsterBulletBig" type="Area2D" unique_id=1654008400]
 script = ExtResource("1_nunyt")
-speed = 150
 damage = 2
 size = 3.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1447355587]
 sprite_frames = ExtResource("2_frames")
-animation = &"default"
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1890634871]
 shape = SubResource("RectangleShape2D_big")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1030447795]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

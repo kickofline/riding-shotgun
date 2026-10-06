@@ -55,16 +55,21 @@ func _flash_damage() -> void:
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
+		if position.y < screen_size.y - 39:
+			velocity.y += 1
 	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+		if position.y > 39:
+			velocity.y -= 1
 
-	if velocity.length() > 0:
+	
+	if velocity.length() > 0: 
 		velocity = velocity.normalized() * speed
 		#$AnimatedSprite2D.play()
 	#else:
 		#$AnimatedSprite2D.stop()
 	position += velocity * delta
+	
+	var half_size = Vector2(19.5, 12)
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 	_fire_cooldown -= delta

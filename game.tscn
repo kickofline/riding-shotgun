@@ -3,14 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://5dw7fx0wda83" path="res://car.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://buwspj7bk8kpe" path="res://monster.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://d1qmkjevp5r8q" path="res://health_bar.tscn" id="3_hbar"]
-[ext_resource type="PackedScene" path="res://boss_health_bar.tscn" id="5_bhb"]
 [ext_resource type="PackedScene" path="res://game_over.tscn" id="4_over"]
+[ext_resource type="PackedScene" path="res://boss_health_bar.tscn" id="5_bhb"]
 [ext_resource type="Shader" uid="uid://bkk76evm0tsri" path="res://game.gdshader" id="5_ryrav"]
-[ext_resource type="Script" uid="uid://b60casallqh2r" path="res://road.gd" id="7_road"]
 [ext_resource type="Texture2D" uid="uid://ltq3011tboq8" path="res://RoadTexture.png" id="6_ryrav"]
+[ext_resource type="Script" uid="uid://b60casallqh2r" path="res://road.gd" id="7_road"]
+[ext_resource type="Texture2D" uid="uid://u4wkhuj6v75r" path="res://Crosshair-frame0.png" id="9_vef74"]
+[ext_resource type="Script" uid="uid://ba3chkuq73vyy" path="res://crosshair.gd" id="10_hve3p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eow3j"]
 shader = ExtResource("5_ryrav")
+shader_parameter/scroll = 0.0
 
 [node name="Game" type="Node2D" unique_id=358935890]
 
@@ -20,7 +23,7 @@ shader = ExtResource("5_ryrav")
 
 [node name="HealthBar" parent="." unique_id=26715792 instance=ExtResource("3_hbar")]
 
-[node name="BossHealthBar" parent="." instance=ExtResource("5_bhb")]
+[node name="BossHealthBar" parent="." unique_id=269686069 instance=ExtResource("5_bhb")]
 
 [node name="GameOver" parent="." unique_id=1673223422 instance=ExtResource("4_over")]
 
@@ -28,7 +31,6 @@ shader = ExtResource("5_ryrav")
 z_index = -10
 texture_filter = 1
 material = SubResource("ShaderMaterial_eow3j")
-script = ExtResource("7_road")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -38,3 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_ryrav")
 expand_mode = 1
+script = ExtResource("7_road")
+
+[node name="Crosshair" type="Sprite2D" parent="." unique_id=1776860454]
+texture = ExtResource("9_vef74")
+script = ExtResource("10_hve3p")
